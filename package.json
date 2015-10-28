@@ -1,0 +1,60 @@
+{
+  "name": "base-fs",
+  "description": "base-methods plugin that adds vinyl-fs methods to your 'base' application for working with the file system, like src, dest, copy and symlink.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/jonschlinkert/base-fs",
+  "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
+  "repository": "jonschlinkert/base-fs",
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/base-fs/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js",
+    "utils.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "lazy-cache": "^0.2.4",
+    "src-stream": "^0.1.1",
+    "through2": "^2.0.0",
+    "vinyl-fs": "^2.2.1"
+  },
+  "devDependencies": {
+    "buffer-equal": "0.0.1",
+    "graceful-fs": "^4.1.2",
+    "mocha": "^2.3.3",
+    "rimraf": "^2.4.3",
+    "should": "^7.1.1",
+    "sinon": "^1.17.2",
+    "templates": "^0.4.3",
+    "vinyl": "^1.1.0"
+  },
+  "keywords": [
+    "base",
+    "baseplugin",
+    "file",
+    "fs",
+    "system",
+    "vinyl"
+  ],
+  "verb": {
+    "related": {
+      "list": [
+        "base-cli",
+        "base-config",
+        "base-data",
+        "base-methods",
+        "base-options",
+        "base-plugins",
+        "base-store"
+      ]
+    }
+  }
+}
