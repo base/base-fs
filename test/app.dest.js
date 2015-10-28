@@ -5,8 +5,8 @@ var statSpy = spies.statSpy;
 require('mocha');
 var should = require('should');
 var assert = require('assert');
-var App = require('templates');
-var afs = require('..');
+var base = require('base-methods');
+var bfs = require('..');
 var app;
 
 var path = require('path');
@@ -21,8 +21,8 @@ var File = require('vinyl');
 var outpath = path.join(__dirname, './out-fixtures');
 
 var wipeOut = function (cb) {
-  app = new App();
-  app.use(afs);
+  app = base();
+  app.use(bfs);
 
   rimraf(path.join(__dirname, './out-fixtures/'), cb);
   spies.setError('false');
@@ -959,8 +959,8 @@ describe('dest stream', function () {
 describe('dest', function () {
   beforeEach(function (done) {
     rimraf(outpath, done);
-    app = new App();
-    app.use(afs);
+    app = base();
+    app.use(bfs);
   });
 
   afterEach(function (done) {
@@ -1101,7 +1101,7 @@ describe('dest', function () {
 
   describe('ext', function () {
     beforeEach(function () {
-      app = new App();
+      app = base();
       app.set('ext', '.txt');
     });
 

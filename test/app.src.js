@@ -3,14 +3,14 @@
 var path = require('path');
 var assert = require('assert');
 var should = require('should');
-var App = require('templates');
-var afs = require('..');
+var base = require('base-methods');
+var bfs = require('..');
 var app;
 
 describe('src()', function() {
   beforeEach(function () {
-    app = new App();
-    app.use(afs);
+    app = base();
+    app.use(bfs);
   });
 
   it('should return a stream', function (done) {

@@ -2,8 +2,8 @@ require('mocha');
 var path = require('path');
 var assert = require('assert');
 var rimraf = require('rimraf');
-var App = require('templates');
-var afs = require('..');
+var base = require('base-methods');
+var bfs = require('..');
 var app;
 
 var fixtures = path.join(__dirname, 'fixtures/copy/*.txt');
@@ -12,8 +12,8 @@ var outpath = path.join(__dirname, 'out-fixtures');
 describe('copy()', function() {
   beforeEach(function (done) {
     rimraf(outpath, done);
-    app = new App();
-    app.use(afs);
+    app = base();
+    app.use(bfs);
   });
 
   afterEach(function (done) {
