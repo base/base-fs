@@ -1102,6 +1102,7 @@ describe('dest', function () {
   describe('ext', function () {
     beforeEach(function () {
       app = base();
+      app.use(bfs);
       app.set('ext', '.txt');
     });
 

@@ -15,8 +15,8 @@ var utils = require('./utils');
  */
 
 module.exports = function fn(app) {
-  plugin(app);
-  if (app.isApp) {
+  plugin.call(this, app);
+  if (this.isApp) {
     return fn;
   }
 };
@@ -44,7 +44,7 @@ function plugin(app) {
    * @api public
    */
 
-  app.mixin('copy', function (patterns, dest, options) {
+  this.define('copy', function (patterns, dest, options) {
     return utils.vfs.src(patterns, options)
       .pipe(utils.vfs.dest(dest, options))
       .on('data', function () {});
@@ -62,7 +62,7 @@ function plugin(app) {
    * @api public
    */
 
-  app.mixin('src', function() {
+  this.define('src', function() {
     this.stream = utils.vfs.src.apply(utils.vfs, arguments);
     return this.stream;
   });
@@ -78,7 +78,7 @@ function plugin(app) {
    * @api public
    */
 
-  app.mixin('symlink', utils.vfs.symlink);
+  this.define('symlink', utils.vfs.symlink);
 
   /**
    * Specify a destination for processed files.
@@ -92,7 +92,7 @@ function plugin(app) {
    * @api public
    */
 
-  app.mixin('dest', function (dir) {
+  this.define('dest', function (dir) {
     if (!dir) {
       throw new TypeError('expected dest to be a string or function.');
     }
