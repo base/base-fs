@@ -28,29 +28,6 @@ module.exports = function fn(app) {
 function plugin(app) {
 
   /**
-   * Copy files with the given glob `patterns` to the specified `dest`.
-   *
-   * ```js
-   * app.task('assets', function(cb) {
-   *   app.copy('assets/**', 'dist/')
-   *     .on('error', cb)
-   *     .on('finish', cb)
-   * });
-   * ```
-   * @name .copy
-   * @param {String|Array} `patterns` Glob patterns of files to copy.
-   * @param  {String|Function} `dest` Desination directory.
-   * @return {Stream} Stream, to continue processing if necessary.
-   * @api public
-   */
-
-  this.define('copy', function (patterns, dest, options) {
-    return utils.vfs.src(patterns, options)
-      .pipe(utils.vfs.dest(dest, options))
-      .on('data', function () {});
-  });
-
-  /**
    * Glob patterns or filepaths to source files.
    *
    * ```js
@@ -62,8 +39,9 @@ function plugin(app) {
    * @api public
    */
 
-  this.define('src', function() {
-    this.stream = utils.vfs.src.apply(utils.vfs, arguments);
+  this.define('src', function(patterns, options) {
+    var opts = utils.extend({}, this.options, options);
+    this.stream = utils.vfs.src(patterns, options);
     return this.stream;
   });
 
@@ -92,10 +70,35 @@ function plugin(app) {
    * @api public
    */
 
-  this.define('dest', function (dir) {
+  this.define('dest', function (dir, options) {
     if (!dir) {
       throw new TypeError('expected dest to be a string or function.');
     }
-    return utils.vfs.dest.apply(utils.vfs, arguments);
+    var opts = utils.extend({}, this.options, options);
+    return utils.dest(dir, opts);
+  });
+
+  /**
+   * Copy files with the given glob `patterns` to the specified `dest`.
+   *
+   * ```js
+   * app.task('assets', function(cb) {
+   *   app.copy('assets/**', 'dist/')
+   *     .on('error', cb)
+   *     .on('finish', cb)
+   * });
+   * ```
+   * @name .copy
+   * @param {String|Array} `patterns` Glob patterns of files to copy.
+   * @param  {String|Function} `dest` Desination directory.
+   * @return {Stream} Stream, to continue processing if necessary.
+   * @api public
+   */
+
+  this.define('copy', function (patterns, dest, options) {
+    var opts = utils.extend({}, this.options, options);
+    return this.src(patterns, opts)
+      .pipe(this.dest(dest, opts))
+      .on('data', function () {});
   });
 }
