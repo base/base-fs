@@ -32,6 +32,7 @@
     "base": "^0.6.4",
     "buffer-equal": "^1.0.0",
     "graceful-fs": "^4.1.2",
+    "gulp-format-md": "^0.1.5",
     "mocha": "*",
     "rimraf": "^2.5.0",
     "should": "*",
@@ -57,6 +58,9 @@
         "base-plugins",
         "base-store"
       ]
-    }
+    },
+    "plugins": [
+      "gulp-format-md"
+    ]
   }
 }
