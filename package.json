@@ -23,19 +23,20 @@
   "dependencies": {
     "dest": "^0.3.1",
     "extend-shallow": "^2.0.1",
-    "lazy-cache": "^0.2.4",
+    "lazy-cache": "^1.0.3",
+    "stream-exhaust": "^1.0.1",
     "through2": "^2.0.0",
-    "vinyl-fs": "^2.2.1"
+    "vinyl-fs": "^2.3.1"
   },
   "devDependencies": {
-    "base-methods": "^0.3.1",
-    "buffer-equal": "0.0.1",
+    "base": "^0.6.4",
+    "buffer-equal": "^1.0.0",
     "graceful-fs": "^4.1.2",
-    "mocha": "^2.3.3",
-    "rimraf": "^2.4.3",
-    "should": "^7.1.1",
+    "mocha": "*",
+    "rimraf": "^2.5.0",
+    "should": "*",
     "sinon": "^1.17.2",
-    "vinyl": "^1.1.0"
+    "vinyl": "^1.1.1"
   },
   "keywords": [
     "base",
