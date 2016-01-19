@@ -26,6 +26,7 @@ module.exports = function fn(app) {
  */
 
 function plugin(app) {
+  if (this.isRegistered('base-fs')) return;
 
   /**
    * Glob patterns or filepaths to source files.
@@ -70,12 +71,12 @@ function plugin(app) {
    * @api public
    */
 
-  this.define('dest', function (dir, options) {
+  this.define('dest', function(dir, options) {
     if (!dir) {
       throw new TypeError('expected dest to be a string or function.');
     }
     var opts = utils.extend({}, this.options, options);
-    return utils.dest(dir, opts);
+    return utils.exhaust(utils.dest(dir, opts));
   });
 
   /**
@@ -95,10 +96,9 @@ function plugin(app) {
    * @api public
    */
 
-  this.define('copy', function (patterns, dest, options) {
+  this.define('copy', function(patterns, dest, options) {
     var opts = utils.extend({}, this.options, options);
     return this.src(patterns, opts)
       .pipe(this.dest(dest, opts))
-      .on('data', function () {});
   });
 }

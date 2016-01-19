@@ -9,6 +9,7 @@ var fn = require;
 
 require = utils;
 require('dest');
+require('stream-exhaust', 'exhaust');
 require('extend-shallow', 'extend');
 require('through2', 'through');
 require('vinyl-fs', 'vfs');
