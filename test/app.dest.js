@@ -6,7 +6,7 @@ require('mocha');
 var should = require('should');
 var assert = require('assert');
 var base = require('base');
-var bfs = require('..');
+var vfs = require('..');
 var app;
 
 var path = require('path');
@@ -22,7 +22,7 @@ var outpath = path.join(__dirname, './out-fixtures');
 
 var wipeOut = function(cb) {
   app = base();
-  app.use(bfs);
+  app.use(vfs());
 
   rimraf(path.join(__dirname, './out-fixtures/'), cb);
   spies.setError('false');
@@ -960,7 +960,7 @@ describe('dest', function() {
   beforeEach(function(cb) {
     rimraf(outpath, cb);
     app = base();
-    app.use(bfs);
+    app.use(vfs());
   });
 
   afterEach(function(cb) {
@@ -1102,7 +1102,7 @@ describe('dest', function() {
   describe('ext', function() {
     beforeEach(function() {
       app = base();
-      app.use(bfs);
+      app.use(vfs());
       app.set('ext', '.txt');
     });
 

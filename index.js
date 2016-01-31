@@ -14,91 +14,87 @@ var utils = require('./utils');
  * `collection` instance
  */
 
-module.exports = function fn(app) {
-  plugin.call(this, app);
-  if (this.isApp) {
-    return fn;
-  }
-};
+module.exports = function(config) {
+  return function plugin(app) {
+    if (this.isRegistered('base-fs')) return;
 
-/**
- * The actual `fs` plugin
- */
+    /**
+     * Glob patterns or filepaths to source files.
+     *
+     * ```js
+     * app.src('src/*.hbs', {layout: 'default'});
+     * ```
+     * @name .src
+     * @param {String|Array} `glob` Glob patterns or file paths to source files.
+     * @param {Object} `options` Options or locals to merge into the context and/or pass to `src` plugins
+     * @api public
+     */
 
-function plugin(app) {
-  if (this.isRegistered('base-fs')) return;
+    this.define('src', function(patterns, options) {
+      var opts = utils.extend({}, config, this.options, options);
+      return (this.stream = utils.vfs.src(patterns, opts));
+    });
 
-  /**
-   * Glob patterns or filepaths to source files.
-   *
-   * ```js
-   * app.src('src/*.hbs', {layout: 'default'});
-   * ```
-   * @name .src
-   * @param {String|Array} `glob` Glob patterns or file paths to source files.
-   * @param {Object} `options` Options or locals to merge into the context and/or pass to `src` plugins
-   * @api public
-   */
+    /**
+     * Glob patterns or paths for symlinks.
+     *
+     * ```js
+     * app.symlink('src/**');
+     * ```
+     * @name .symlink
+     * @param {String|Array} `glob`
+     * @api public
+     */
 
-  this.define('src', function(patterns, options) {
-    var opts = utils.extend({}, this.options, options);
-    this.stream = utils.vfs.src(patterns, options);
-    return this.stream;
-  });
+    this.define('symlink', function() {
+      return utils.fs.symlink.apply(this, arguments);
+    });
 
-  /**
-   * Glob patterns or paths for symlinks.
-   *
-   * ```js
-   * app.symlink('src/**');
-   * ```
-   * @name .symlink
-   * @param {String|Array} `glob`
-   * @api public
-   */
+    /**
+     * Specify a destination for processed files.
+     *
+     * ```js
+     * app.dest('dist/');
+     * ```
+     * @name .dest
+     * @param {String|Function} `dest` File path or rename function.
+     * @param {Object} `options` Options and locals to pass to `dest` plugins
+     * @api public
+     */
 
-  this.define('symlink', utils.vfs.symlink);
+    this.define('dest', function(dir, options) {
+      if (!dir) {
+        throw new TypeError('expected dest to be a string or function.');
+      }
+      var opts = utils.extend({}, config, this.options, options);
+      return utils.exhaust(utils.dest(dir, opts));
+    });
 
-  /**
-   * Specify a destination for processed files.
-   *
-   * ```js
-   * app.dest('dist/');
-   * ```
-   * @name .dest
-   * @param {String|Function} `dest` File path or rename function.
-   * @param {Object} `options` Options and locals to pass to `dest` plugins
-   * @api public
-   */
+    /**
+     * Copy files with the given glob `patterns` to the specified `dest`.
+     *
+     * ```js
+     * app.task('assets', function(cb) {
+     *   app.copy('assets/**', 'dist/')
+     *     .on('error', cb)
+     *     .on('finish', cb)
+     * });
+     * ```
+     * @name .copy
+     * @param {String|Array} `patterns` Glob patterns of files to copy.
+     * @param  {String|Function} `dest` Desination directory.
+     * @return {Stream} Stream, to continue processing if necessary.
+     * @api public
+     */
 
-  this.define('dest', function(dir, options) {
-    if (!dir) {
-      throw new TypeError('expected dest to be a string or function.');
+    this.define('copy', function(patterns, dest, options) {
+      return this.src(patterns, options)
+        .pipe(this.dest(dest, options));
+    });
+
+    // return plugin if the instance is `app`
+    if (this.isApp) {
+      return plugin;
     }
-    var opts = utils.extend({}, this.options, options);
-    return utils.exhaust(utils.dest(dir, opts));
-  });
-
-  /**
-   * Copy files with the given glob `patterns` to the specified `dest`.
-   *
-   * ```js
-   * app.task('assets', function(cb) {
-   *   app.copy('assets/**', 'dist/')
-   *     .on('error', cb)
-   *     .on('finish', cb)
-   * });
-   * ```
-   * @name .copy
-   * @param {String|Array} `patterns` Glob patterns of files to copy.
-   * @param  {String|Function} `dest` Desination directory.
-   * @return {Stream} Stream, to continue processing if necessary.
-   * @api public
-   */
-
-  this.define('copy', function(patterns, dest, options) {
-    var opts = utils.extend({}, this.options, options);
-    return this.src(patterns, opts)
-      .pipe(this.dest(dest, opts))
-  });
-}
+  };
+};

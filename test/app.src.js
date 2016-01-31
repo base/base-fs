@@ -4,13 +4,13 @@ var path = require('path');
 var assert = require('assert');
 var should = require('should');
 var base = require('base');
-var bfs = require('..');
+var fs = require('..');
 var app;
 
 describe('src()', function() {
   beforeEach(function() {
     app = base();
-    app.use(bfs);
+    app.use(fs());
   });
 
   it('should return a stream', function(cb) {

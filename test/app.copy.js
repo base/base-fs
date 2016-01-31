@@ -5,7 +5,7 @@ var path = require('path');
 var assert = require('assert');
 var rimraf = require('rimraf');
 var base = require('base');
-var bfs = require('..');
+var fs = require('..');
 var app;
 
 var fixtures = path.join(__dirname, 'fixtures/copy/*.txt');
@@ -15,7 +15,7 @@ describe('copy()', function() {
   beforeEach(function(cb) {
     rimraf(outpath, cb);
     app = base();
-    app.use(bfs);
+    app.use(fs());
   });
 
   afterEach(function(cb) {
