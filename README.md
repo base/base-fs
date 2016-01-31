@@ -14,11 +14,11 @@ $ npm i base-fs --save
 
 ```js
 var base = require('base-methods');
-var bfs = require('base-fs');
+var fs = require('base-fs');
 
 // create your application and add the plugin
 var app = base()
-  .use(bfs)
+  .use(fs())
 
 // now you can use `app.src` and `app.dest`
 app.src(['foo/*.hbs'])
