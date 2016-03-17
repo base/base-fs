@@ -2,11 +2,11 @@
   "name": "base-fs",
   "description": "base-methods plugin that adds vinyl-fs methods to your 'base' application for working with the file system, like src, dest, copy and symlink.",
   "version": "0.3.0",
-  "homepage": "https://github.com/jonschlinkert/base-fs",
+  "homepage": "https://github.com/node-base/base-fs",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
-  "repository": "jonschlinkert/base-fs",
+  "repository": "node-base/base-fs",
   "bugs": {
-    "url": "https://github.com/jonschlinkert/base-fs/issues"
+    "url": "https://github.com/node-base/base-fs/issues"
   },
   "license": "MIT",
   "files": [
@@ -48,6 +48,15 @@
     "vinyl"
   ],
   "verb": {
+    "run": true,
+    "toc": false,
+    "layout": "default",
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
     "related": {
       "list": [
         "base-cli",
@@ -59,8 +68,11 @@
         "base-store"
       ]
     },
-    "plugins": [
-      "gulp-format-md"
-    ]
+    "reflinks": [
+      "verb"
+    ],
+    "lint": {
+      "reflinks": true
+    }
   }
 }
