@@ -14,9 +14,14 @@ var utils = require('./utils');
  * `collection` instance
  */
 
-module.exports = function(config) {
+module.exports = function(config, fn) {
+  if (typeof config === 'function') {
+    fn = config;
+    config = {};
+  }
+
   return function plugin(app) {
-    if (this.isRegistered('base-fs')) return;
+    if (!isValidInstance(app, fn)) return;
 
     /**
      * Glob patterns or filepaths to source files.
@@ -98,3 +103,10 @@ module.exports = function(config) {
     }
   };
 };
+
+function isValidInstance(app, fn) {
+  if (typeof fn === 'function') {
+    return fn(app, 'base-fs');
+  }
+  return !utils.isRegistered(app, 'base-fs');
+}
