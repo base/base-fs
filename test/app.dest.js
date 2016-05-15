@@ -22,6 +22,7 @@ var outpath = path.join(__dirname, './out-fixtures');
 
 var wipeOut = function(cb) {
   app = base();
+  app.isApp = true;
   app.use(vfs());
 
   rimraf(path.join(__dirname, './out-fixtures/'), cb);
@@ -960,6 +961,7 @@ describe('dest', function() {
   beforeEach(function(cb) {
     rimraf(outpath, cb);
     app = base();
+    app.isApp = true;
     app.use(vfs());
   });
 
@@ -1102,6 +1104,7 @@ describe('dest', function() {
   describe('ext', function() {
     beforeEach(function() {
       app = base();
+      app.isApp = true;
       app.use(vfs());
       app.set('ext', '.txt');
     });

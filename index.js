@@ -21,7 +21,9 @@ module.exports = function(config, fn) {
   }
 
   return function plugin(app) {
-    if (!isValidInstance(app, fn)) return;
+    if (!utils.isValid(app, fn) || utils.isRegistered(app, 'base-fs', ['app', 'views'])) {
+      return;
+    }
 
     /**
      * Glob patterns or filepaths to source files.
@@ -103,10 +105,3 @@ module.exports = function(config, fn) {
     }
   };
 };
-
-function isValidInstance(app, fn) {
-  if (typeof fn === 'function') {
-    return fn(app, 'base-fs');
-  }
-  return !utils.isRegistered(app, 'base-fs');
-}

@@ -15,6 +15,7 @@ describe('copy()', function() {
   beforeEach(function(cb) {
     rimraf(outpath, cb);
     app = base();
+    app.isApp = true;
     app.use(fs());
   });
 

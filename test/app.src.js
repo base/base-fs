@@ -10,6 +10,7 @@ var app;
 describe('src()', function() {
   beforeEach(function() {
     app = base();
+    app.isApp = true;
     app.use(fs());
   });
 

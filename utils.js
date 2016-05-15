@@ -10,6 +10,7 @@ var fn = require;
 require = utils;
 require('dest');
 require('is-registered');
+require('is-valid-instance', 'isValid');
 require('stream-exhaust', 'exhaust');
 require('extend-shallow', 'extend');
 require('through2', 'through');
