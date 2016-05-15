@@ -59,12 +59,10 @@
       "gulp-format-md"
     ],
     "related": {
+      "highlight": "base-fs-conflicts",
       "list": [
-        "base-cli",
-        "base-config",
         "base-data",
-        "base-methods",
-        "base-options",
+        "base-option",
         "base-plugins",
         "base-store"
       ]

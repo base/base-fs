@@ -1,6 +1,8 @@
-# base-fs [![NPM version](https://img.shields.io/npm/v/base-fs.svg)](https://www.npmjs.com/package/base-fs) [![Build Status](https://img.shields.io/travis/node-base/base-fs.svg)](https://travis-ci.org/node-base/base-fs)
+# base-fs [![NPM version](https://img.shields.io/npm/v/base-fs.svg?style=flat)](https://www.npmjs.com/package/base-fs) [![NPM downloads](https://img.shields.io/npm/dm/base-fs.svg?style=flat)](https://npmjs.org/package/base-fs) [![Build Status](https://img.shields.io/travis/node-base/base-fs.svg?style=flat)](https://travis-ci.org/node-base/base-fs)
 
-> base-methods plugin that adds vinyl-fs methods to your 'base' application for working with the file system, like src, dest, copy and symlink.
+base-methods plugin that adds vinyl-fs methods to your 'base' application for working with the file system, like src, dest, copy and symlink.
+
+You might also be interested in [base-fs-conflicts](https://github.com/node-base/base-fs-conflicts).
 
 ## Install
 
@@ -27,7 +29,7 @@ app.src(['foo/*.hbs'])
 
 ## API
 
-### [.src](index.js#L33)
+### [.src](index.js#L38)
 
 Glob patterns or filepaths to source files.
 
@@ -42,7 +44,7 @@ Glob patterns or filepaths to source files.
 app.src('src/*.hbs', {layout: 'default'});
 ```
 
-### [.symlink](index.js#L49)
+### [.symlink](index.js#L54)
 
 Glob patterns or paths for symlinks.
 
@@ -56,7 +58,7 @@ Glob patterns or paths for symlinks.
 app.symlink('src/**');
 ```
 
-### [.dest](index.js#L65)
+### [.dest](index.js#L70)
 
 Specify a destination for processed files.
 
@@ -71,7 +73,7 @@ Specify a destination for processed files.
 app.dest('dist/');
 ```
 
-### [.copy](index.js#L90)
+### [.copy](index.js#L95)
 
 Copy files with the given glob `patterns` to the specified `dest`.
 
@@ -93,17 +95,16 @@ app.task('assets', function(cb) {
 
 ## Related projects
 
-* [base-cli](https://www.npmjs.com/package/base-cli): Plugin for base-methods that maps built-in methods to CLI args (also supports methods from a… [more](https://www.npmjs.com/package/base-cli) | [homepage](https://github.com/jonschlinkert/base-cli)
-* [base-config](https://www.npmjs.com/package/base-config): base-methods plugin that adds a `config` method for mapping declarative configuration values to other 'base'… [more](https://www.npmjs.com/package/base-config) | [homepage](https://github.com/jonschlinkert/base-config)
-* [base-data](https://www.npmjs.com/package/base-data): adds a `data` method to base-methods. | [homepage](https://github.com/jonschlinkert/base-data)
-* [base-methods](https://www.npmjs.com/package/base-methods): base-methods is the foundation for creating modular, unit testable and highly pluggable node.js applications, starting… [more](https://www.npmjs.com/package/base-methods) | [homepage](https://github.com/jonschlinkert/base-methods)
-* [base-options](https://www.npmjs.com/package/base-options): Adds a few options methods to base-methods, like `option`, `enable` and `disable`. See the readme… [more](https://www.npmjs.com/package/base-options) | [homepage](https://github.com/jonschlinkert/base-options)
-* [base-plugins](https://www.npmjs.com/package/base-plugins): Upgrade's plugin support in base applications to allow plugins to be called any time after… [more](https://www.npmjs.com/package/base-plugins) | [homepage](https://github.com/jonschlinkert/base-plugins)
-* [base-store](https://www.npmjs.com/package/base-store): Plugin for getting and persisting config values with your base-methods application. Adds a 'store' object… [more](https://www.npmjs.com/package/base-store) | [homepage](https://github.com/jonschlinkert/base-store)
+You might also be interested in these projects:
+
+* [base-data](https://www.npmjs.com/package/base-data): adds a `data` method to base-methods. | [homepage](https://github.com/node-base/base-data)
+* [base-option](https://www.npmjs.com/package/base-option): Adds a few options methods to base, like `option`, `enable` and `disable`. See the readme… [more](https://www.npmjs.com/package/base-option) | [homepage](https://github.com/node-base/base-option)
+* [base-plugins](https://www.npmjs.com/package/base-plugins): Upgrade's plugin support in base applications to allow plugins to be called any time after… [more](https://www.npmjs.com/package/base-plugins) | [homepage](https://github.com/node-base/base-plugins)
+* [base-store](https://www.npmjs.com/package/base-store): Plugin for getting and persisting config values with your base-methods application. Adds a 'store' object… [more](https://www.npmjs.com/package/base-store) | [homepage](https://github.com/node-base/base-store)
 
 ## Contributing
 
-Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/jonschlinkert/base-fs/issues/new).
+Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/node-base/base-fs/issues/new).
 
 ## Building docs
 
@@ -136,9 +137,9 @@ $ npm install -d && npm test
 
 ## License
 
-Copyright © 2016 [Jon Schlinkert](https://github.com/jonschlinkert)
+Copyright © 2016, [Jon Schlinkert](https://github.com/jonschlinkert).
 Released under the [MIT license](https://github.com/node-base/base-fs/blob/master/LICENSE).
 
 ***
 
-_This file was generated by [verb](https://github.com/verbose/verb), v0.9.0, on March 17, 2016._
+_This file was generated by [verb](https://github.com/verbose/verb), v0.9.0, on May 15, 2016._
