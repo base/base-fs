@@ -29,7 +29,7 @@ app.src(['foo/*.hbs'])
 
 ## API
 
-### [.src](index.js#L38)
+### [.src](index.js#L40)
 
 Glob patterns or filepaths to source files.
 
@@ -44,7 +44,7 @@ Glob patterns or filepaths to source files.
 app.src('src/*.hbs', {layout: 'default'});
 ```
 
-### [.symlink](index.js#L54)
+### [.symlink](index.js#L56)
 
 Glob patterns or paths for symlinks.
 
@@ -58,7 +58,7 @@ Glob patterns or paths for symlinks.
 app.symlink('src/**');
 ```
 
-### [.dest](index.js#L70)
+### [.dest](index.js#L72)
 
 Specify a destination for processed files.
 
@@ -73,7 +73,7 @@ Specify a destination for processed files.
 app.dest('dist/');
 ```
 
-### [.copy](index.js#L95)
+### [.copy](index.js#L97)
 
 Copy files with the given glob `patterns` to the specified `dest`.
 
