@@ -14,16 +14,9 @@ var utils = require('./utils');
  * `collection` instance
  */
 
-module.exports = function(config, fn) {
-  if (typeof config === 'function') {
-    fn = config;
-    config = {};
-  }
-
+module.exports = function(config) {
   return function plugin(app) {
-    if (!utils.isValid(app, fn) || utils.isRegistered(app, 'base-fs', ['app', 'views'])) {
-      return;
-    }
+    if (!utils.isValid(app)) return;
 
     /**
      * Glob patterns or filepaths to source files.
