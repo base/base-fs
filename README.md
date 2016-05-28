@@ -113,13 +113,7 @@ Pull requests and stars are always welcome. For bugs and feature requests, [plea
 Generate readme and API documentation with [verb](https://github.com/verbose/verb):
 
 ```sh
-$ npm install verb && npm run docs
-```
-
-Or, if [verb](https://github.com/verbose/verb) is installed globally:
-
-```sh
-$ verb
+$ npm install -g verb verb-readme-generator && verb
 ```
 
 ## Running tests
