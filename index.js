@@ -31,7 +31,7 @@ module.exports = function(config) {
      */
 
     this.define('src', function(patterns, options) {
-      var opts = utils.extend({}, config, this.options, options);
+      var opts = utils.extend({ allowEmpty: true }, config, this.options, options);
       return (this.stream = utils.vfs.src(patterns, opts));
     });
 
